@@ -1,0 +1,173 @@
+ClusterID	ClusterName	ClusterIDName	Hierarchy	Hierarchy_version08112020	CellOntology
+Ref1.10	Ref1:CD34+ HSC	Ref1:10:CD34+ HSC	CD34:HSC	CD34:HSC	hematopoietic stem cell
+Ref1.11	Ref1:CD34+ HSC-cycle	Ref1:11:CD34+ HSC-cycle	CD34:HSC	CD34:HSC	hematopoietic stem cell
+Ref1.12	Ref1:CD34+ MultiLin	Ref1:12:CD34+ MultiLin	CD34:HSC	CD34:HSC	hematopoietic multipotent progenitor cell
+Ref1.13	Ref1:CD34+ Gran	Ref1:13:CD34+ Gran	CD34	CD34	"CD34-positive, CD38-positive granulocyte monocyte progenitor"
+Ref1.14	Ref1:CD34+ MKP	Ref1:14:CD34+ MKP	CD34	CD34	megakaryocyte progenitor cell
+Ref1.15	Ref1:CD34+ MEP	Ref1:15:CD34+ MEP	CD34	CD34	"CD34-positive, CD38-positive megakaryocyte erythroid progenitor cell"
+Ref1.16	Ref1:CD34+ ERP-Early	Ref1:16:CD34+ ERP-Early	CD34	CD34	erythroid progenitor cell
+Ref1.17	Ref1:CD34+ ERP	Ref1:17:CD34+ ERP	CD34	CD34	erythroid progenitor cell
+Ref1.18	Ref1:CD34+ Eo/B/Mast	Ref1:18:CD34+ Eo/B/Mast	CD34	CD34	"common myeloid progenitor, CD34-positive"
+Ref1.19	Ref1:NK cells	Ref1:19:NK cells	L:NK	L:NK	natural killer cell
+Ref1.1	Ref1:CD34+ pre-B	Ref1:1:CD34+ pre-B	CD34	CD34	precursor B cell
+Ref1.20	Ref1:CD8 T-cell	Ref1:20:CD8 T-cell	X	X	"CD8-positive, alpha-beta T cell"
+Ref1.21	Ref1:Naive_T_Cell	Ref1:21:Naive_T_Cell	X	X	naive T cell
+Ref1.22	Ref1:Follicular B cell	Ref1:22:Follicular B cell	L:B	L:B	follicular B cell
+Ref1.23	Ref1:Platelet	Ref1:23:Platelet	M:Mega:Platelet	M:Mega:Platelet	platelet
+Ref1.24	Ref1:Pro-B	Ref1:24:Pro-B	CD34	CD34	pro-B cell
+Ref1.25	Ref1:Erythroblast	Ref1:25:Erythroblast	M:Ery	M:Ery	erythroblast
+Ref1.26	Ref1:Early-Erythroblast	Ref1:26:Early-Erythroblast	M:Ery	M:Ery	erythroblast
+Ref1.27	Ref1:Pre-Dendritic	Ref1:27:Pre-Dendritic	CD34	CD34	pre-conventional dendritic cell
+Ref1.28	Ref1:Granulocytic-UNK	Ref1:28:Granulocytic-UNK	M	M	granulocyte
+Ref1.29	Ref1:Eosinophil	Ref1:29:Eosinophil	M:Eos	M:Eos	eosinophil
+Ref1.2	Ref1:CD34+ pre-PC	Ref1:2:CD34+ pre-PC	CD34	CD34	plasmablast
+Ref1.30	Ref1:Neutrophil	Ref1:30:Neutrophil	M:Neu	M:Neu	neutrophil
+Ref1.31	Ref1:Immature-Neutrophil	Ref1:31:Immature-Neutrophil	M	M	immature neutrophil
+Ref1.32	Ref1:Monocyte	Ref1:32:Monocyte	M:Mono	M:Mono	monocyte
+Ref1.33	Ref1:Stromal	Ref1:33:Stromal	X	X	X
+Ref1.34	Ref1:Dendritic Cell	Ref1:34:pDC	L:pDC;M:pDC	M:pDC	plasmacytoid dendritic cell
+Ref1.35	Ref1:Plasma Cell	Ref1:35:Plasma Cell	L:B:PC	L:B:PC	plasma cell
+Ref1.3	Ref1:CD34+ CLP	Ref1:3:CD34+ CLP	CD34	CD34	"CD34-positive, CD38-positive common lymphoid progenitor"
+Ref1.4	Ref1:CD34+ pre-B cycling	Ref1:4:CD34+ pre-B cycling	CD34	CD34	precursor B cell
+Ref1.5	Ref1:CD34+ Lymphoid UNK	Ref1:5:CD34+ Lymphoid UNK	CD34	CD34	early lymphoid progenitor
+Ref1.6	Ref1:CD34+ pre-T	Ref1:6:CD34+ pre-T	CD34	CD34	pro-T cell
+Ref1.7	Ref1:CD34+ MDP-1	Ref1:7:CD34+ MDP-1	CD34	CD34	macrophage dendritic cell progenitor
+Ref1.8	Ref1:CD34+ MDP-2	Ref1:8:CD34+ MDP-2	CD34	CD34	macrophage dendritic cell progenitor
+Ref1.9	Ref1:CD34+ LMPP	Ref1:9:CD34+ LMPP	CD34	CD34	LMPP
+Ref2.10	Ref2:Monocyte_Classical	Ref2:10:Monocyte_Classical	M:Mono	M:Mono	classical monocyte
+Ref2.11	Ref2:B_Cell_Naive	Ref2:11:B_Cell_Naive	L:B	L:B	naive B cell
+Ref2.12	Ref2:NK_Cell_Activated	Ref2:12:NK_Cell_Activated	L:NK	L:NK	natural killer cell
+Ref2.13	Ref2:B_Cell_Memory	Ref2:13:B_Cell_Memory	L:B	L:B	memory B cell
+Ref2.14	Ref2:Dendritic_Cell	Ref2:14:mDC	M:cDC	M:Mono:mDC	cDC
+Ref2.15	Ref2:Monocyte_Classical	Ref2:15:Monocyte_Classical	M:Mono	M:Mono	classical monocyte
+Ref2.17	Ref2:Cell_Cycle	Ref2:17:Cell_Cycle	X	X	X
+Ref2.18	Ref2:Monocyte_Classical	Ref2:18:Monocyte_Classical	M:Mono	M:Mono	classical monocyte
+Ref2.19	Ref2:Plasmactoid_Dendritic_Cell	Ref2:19:Plasmactoid_Dendritic_Cell	L:pDC;M:pDC	M:pDC	plasmacytoid dendritic cell
+Ref2.1	Ref2:NK_Cell_Resting	Ref2:1:NK_Cell_Resting	L:NK	L:NK	natural killer cell
+Ref2.20	Ref2:Plasma_Cell	Ref2:20:Plasma_Cell	L:B:PC	L:B:PC	plasma cell
+Ref2.22	Ref2:Activated_Platelets	Ref2:22:Activated_Platelets	M:Mega:Platelet	M:Mega:Platelet	platelet
+Ref2.23	Ref2:T_Cell_CD8	Ref2:23:T_Cell_CD8	X	X	X
+Ref2.24	Ref2:RBC	Ref2:24:RBC	M:Ery	M:Ery	erythrocyte
+Ref2.25	Ref2:Plasma_Cell	Ref2:25:Plasma_Cell	L:B:PC	L:B:PC	plasma cell
+Ref2.2	Ref2:Monocyte_Classical	Ref2:2:Monocyte_Classical	M:Mono	M:Mono	classical monocyte
+Ref2.3	Ref2:Monocyte_Classical	Ref2:3:Monocyte_Classical	M:Mono	M:Mono	classical monocyte
+Ref2.4	Ref2:Monocyte_Non-Classical	Ref2:4:Monocyte_Non-Classical	M:Mono	M:Mono	non-classical monocyte
+Ref2.9	Ref2:Monocyte_Classical_Platelets	Ref2:9:Monocyte_Classical_Platelets	X	X	X
+Ref2.T0	Ref2:T_Cell_CD4_EM	Ref2:T0:T_Cell_CD4_EM	L:T:CD4:EM		"effector memory CD4-positive, alpha-beta T cell"
+Ref2.T10	Ref2:T_Cell_CD8_Exhausted	Ref2:T10:T_Cell_CD8_Exhausted	L:T:CD8:Ex		exhausted T cell
+Ref2.T11	Ref2:T_Cell_CD8_EM	Ref2:T11:T_Cell_CD8_EM	L:T:CD8:EM		"effector memory CD8-positive, alpha-beta T cell"
+Ref2.T12	Ref2:T_Cell_CD8_EM	Ref2:T12:T_Cell_CD8_EM	L:T:CD8:EM		"effector memory CD8-positive, alpha-beta T cell"
+Ref2.T13	Ref2:T_Cell_CD8_EM	Ref2:T13:T_Cell_CD8_EM	L:T:CD8:EM		"effector memory CD8-positive, alpha-beta T cell"
+Ref2.T14	Ref2:T_Cell_CD8_CM	Ref2:T14:T_Cell_CD8_CM	L:T:CD8:CM		"central memory CD8-positive, alpha-beta T cell"
+Ref2.T15	Ref2:T_Cell_Tfh	Ref2:T15:T_Cell_Tfh	L:T:CD4:Tfh		T follicular helper cell
+Ref2.T1	Ref2:T_Cell_CD4_Naive	Ref2:T1:T_Cell_CD4_Naive	L:T:CD4:Na??ve		"naive thymus-derived CD4-positive, alpha-beta T cell"
+Ref2.T2	Ref2:T_Cell_CD8_TEMRA	Ref2:T2:T_Cell_CD8_TEMRA	L:T:CD8:EM		"effector memory CD8-positive, alpha-beta T cell"
+Ref2.T3	Ref2:T_Cell_CD8_TEMRA	Ref2:T3:T_Cell_CD8_TEMRA	L:T:CD8:EM		"effector memory CD8-positive, alpha-beta T cell"
+Ref2.T4	Ref2:T_Cell_CD4_CM	Ref2:T4:T_Cell_CD4_CM	L:T:CD4:CM		"central memory CD4-positive, alpha-beta T cell"
+Ref2.T5	Ref2:T_Cell_CD8_EM	Ref2:T5:T_Cell_CD8_EM	L:T:CD8:EM		"effector memory CD8-positive, alpha-beta T cell"
+Ref2.T6	Ref2:T_Cell_CD4_Apoptotic	Ref2:T6:T_Cell_CD4_Apoptotic	X		X
+Ref2.T7	Ref2:T_Cell_CD8_CM	Ref2:T7:T_Cell_CD8_CM	L:T:CD8:CM		"central memory CD8-positive, alpha-beta T cell"
+Ref2.T8	Ref2:T_Cell_Treg	Ref2:T8:T_Cell_Treg	L:T:CD4:Treg		"CD4-positive, CD25-positive, CCR4-positive, alpha-beta regulatory T cell"
+Ref2.T9	Ref2:T_Cell_CD8_Naive	Ref2:T9:T_Cell_CD8_Naive	L:T:CD8:Na??ve		"naive thymus-derived CD8-positive, alpha-beta T cell"
+Ref3.10	Ref3:Non-InflamMacs	Ref3:10:Non-InflamMacs	M:Mac		tissue-resident macrophage
+Ref3.16	Ref3:Mature_B	Ref3:16:Mature_B	L:B		mature B cell
+Ref3.18	Ref3:dividing_T	Ref3:18:dividing_T	L:unconvT		gamma-delta T cell
+Ref3.19	Ref3:Ery	Ref3:19:Ery	M:Ery		erythrocyte
+Ref3.2	Ref3:tissue_resident_T	Ref3:2:tissue_resident_T	X		Tissue-resident memory
+Ref3.4	Ref3:InflamMacs	Ref3:4:InflamMacs	X		X
+Ref3.7	Ref3:Plasma_cells	Ref3:7:Plasma_cells	L:B:PC		plasma cell
+Ref3.8	Ref3:NK-like_cells	Ref3:8:NK-like_cells	X		natural killer cell
+Ref3.9	Ref3:unconv_T	Ref3:9:unconv_T	L:unconvT		gamma-delta T cell
+Ref4.10	Ref4:Early erythrocytes	Ref4:10:Early erythrocytes	M:Ery		erythrocyte
+Ref4.11	Ref4:Early erythroid progenitors	Ref4:11:Early erythroid progenitors	CD34		erythroid progenitor cell
+Ref4.12	Ref4:HSPCs	Ref4:12:HSPCs	CD34:HSC		hematopoietic stem cell
+Ref4.13	Ref4:Late erythrocytes	Ref4:13:Late erythrocytes	M:Ery		erythrocyte
+Ref4.14	Ref4:Late erythroid progenitors	Ref4:14:Late erythroid progenitors	CD34		erythroid progenitor cell
+Ref4.15	Ref4:Megakaryocytes	Ref4:15:Megakaryocytes	M:Mega		megakaryocyte
+Ref4.16	Ref4:Monocyte progenitors	Ref4:16:Monocyte progenitors	CD34		granulocyte monocyte progenitor cell
+Ref4.17	Ref4:Natural killer cells	Ref4:17:Natural killer cells	L:NK		natural killer cell
+Ref4.18	Ref4:Plasma cells	Ref4:18:Plasma cells	L:B:PC		plasma cell
+Ref4.19	Ref4:Plasmacytoid dendritic cells	Ref4:19:Plasmacytoid dendritic cells	L:pDC;M:pDC		plasmacytoid dendritic cell
+Ref4.1	Ref4:CD10+ B cells	Ref4:1:CD10+ B cells	CD34		precursor B cell
+Ref4.2	Ref4:CD14+ monocytes	Ref4:2:CD14+ monocytes	M:Mono		CD14-positive monocyte
+Ref4.3	Ref4:CD16+ monocytes	Ref4:3:CD16+ monocytes	M:Mono		"CD14-low, CD16-positive monocyte"
+Ref4.4	Ref4:CD20+ B cells	Ref4:4:CD20+ B cells	L:B		mature B cell
+Ref4.5	Ref4:CD4+ memory T cells	Ref4:5:CD4+ memory T cells	X		"CD4-positive, alpha-beta memory T cell"
+Ref4.6	Ref4:CD4+ na????ve T cells	Ref4:6:CD4+ naive T cells	L:T:CD4:Na??ve		"naive thymus-derived CD4-positive, alpha-beta T cell"
+Ref4.7	Ref4:CD8+ effector T cells	Ref4:7:CD8+ effector T cells	L:T:CD8:EM		"effector CD8-positive, alpha-beta T cell"
+Ref4.8	Ref4:CD8+ na????ve T cells	Ref4:8:CD8+ naive T cells	L:T:CD8:Na??ve		"naive thymus-derived CD8-positive, alpha-beta T cell"
+Ref4.9	Ref4:Dendritic cells	Ref4:9:mDC	M:cDC		cDC
+Ref5.tB	Ref5:tB	Ref5:tB	L:B		B cell
+Ref5.tDC1	Ref5:tDC1	Ref5:tDC1	M:cDC		cDC
+Ref5.tDC2	Ref5:tDC2	Ref5:tDC2	M:cDC		cDC
+Ref5.tDC3	Ref5:tDC3	Ref5:tDC3	M:cDC		cDC
+Ref5.tMac1	Ref5:tMac1	Ref5:tMac1	M:Mac		macrophage
+Ref5.tMac2	Ref5:tMac2	Ref5:tMac2	M:Mac		macrophage
+Ref5.tMac3	Ref5:tMac3	Ref5:tMac3	M:Mac		macrophage
+Ref5.tMac4	Ref5:tMac4	Ref5:tMac4	M:Mac		macrophage
+Ref5.tMac5	Ref5:tMac5	Ref5:tMac5	M:Mac		macrophage
+Ref5.tMac6	Ref5:tMac6	Ref5:tMac6	M:Mac		macrophage
+Ref5.tMac7	Ref5:tMac7	Ref5:tMac7	M:Mac		macrophage
+Ref5.tMac8	Ref5:tMac8	Ref5:tMac8	M:Mac		macrophage
+Ref5.tMac9	Ref5:tMac9	Ref5:tMac9	M:Mac		macrophage
+Ref5.tMacCycl	Ref5:tMacCycl	Ref5:tMacCycl	M:Mac		macrophage
+Ref5.tMast1	Ref5:tMast1	Ref5:tMast1	M:Mast		mast cell
+Ref5.tMast2	Ref5:tMast2	Ref5:tMast2	M:Mast		mast cell
+Ref5.tMono1	Ref5:tMono1	Ref5:tMono1	M:Mono		monocyte
+Ref5.tMono2	Ref5:tMono2	Ref5:tMono2	M:Mono		monocyte
+Ref5.tMono3	Ref5:tMono3	Ref5:tMono3	M:Mono		monocyte
+Ref5.tMonoDC	Ref5:tMonoDC	Ref5:tMonoDC	X		X
+Ref5.tN1	Ref5:tN1	Ref5:tN1	M:Neu		neutrophil
+Ref5.tN2	Ref5:tN2	Ref5:tN2	M:Neu		neutrophil
+Ref5.tN3	Ref5:tN3	Ref5:tN3	M:Neu		neutrophil
+Ref5.tN4	Ref5:tN4	Ref5:tN4	M:Neu		neutrophil
+Ref5.tN5	Ref5:tN5	Ref5:tN5	M:Neu		neutrophil
+Ref5.tNK1	Ref5:tNK1	Ref5:tNK1	L:NK		natural killer cell
+Ref5.tNK2	Ref5:tNK2	Ref5:tNK2	L:NK		natural killer cell
+Ref5.tPC1	Ref5:tPC1	Ref5:tPC1	L:B:PC		plasma cell
+Ref5.tPC2	Ref5:tPC2	Ref5:tPC2	L:B:PC		plasma cell
+Ref5.tPC3	Ref5:tPC3	Ref5:tPC3	L:B:PC		plasma cell
+Ref5.tPC4	Ref5:tPC4	Ref5:tPC4	L:B:PC		plasma cell
+Ref5.tPC5	Ref5:tPC5	Ref5:tPC5	L:B:PC		plasma cell
+Ref5.tPC6	Ref5:tPC6	Ref5:tPC6	L:B:PC		plasma cell
+Ref5.tpDC	Ref5:tpDC	Ref5:tpDC	L:pDC;M:pDC		plasmacytoid dendritic cell
+Ref5.tRBC	Ref5:tRBC	Ref5:tRBC	M:Ery		erythrocyte
+Ref5.tT1	Ref5:tT1	Ref5:tT1	X		T cell
+Ref5.tT2	Ref5:tT2	Ref5:tT2	X		T cell
+Ref5.tT3	Ref5:tT3	Ref5:tT3	X		T cell
+Ref5.tT4	Ref5:tT4	Ref5:tT4	X		T cell
+Ref5.tT5	Ref5:tT5	Ref5:tT5	X		T cell
+Ref5.tT6	Ref5:tT6	Ref5:tT6	X		T cell
+Ref5.tT7	Ref5:tT7	Ref5:tT7	X		T cell
+Ref6.CD4..CXCL13.	Ref6:CD4+ CXCL13+	Ref6:CD4+ CXCL13+	L:T:CD4:Tfh		T follicular helper cell
+Ref6.CD4..FOXP3.	Ref6:CD4+ FOXP3+	Ref6:CD4+ FOXP3+	L:T:CD4:Treg		"CD4-positive, CD25-positive, CCR4-positive, alpha-beta regulatory T cell"
+Ref6.CD4..IL7R.	Ref6:CD4+ IL7R+	Ref6:CD4+ IL7R+	L:T:CD4:EM		"effector memory CD4-positive, alpha-beta T cell"
+Ref6.CD4..RGCC.	Ref6:CD4+ RGCC+	Ref6:CD4+ RGCC+	L:T:CD4:EM		"effector memory CD4-positive, alpha-beta T cell"
+Ref6.CD4..TRM	Ref6:CD4+ TRM	Ref6:CD4+ TRM	L:T:CD4:TRM		Tissue-resident memory
+Ref6.CD8..mitotic.TRM	Ref6:CD8+ mitotic TRM	Ref6:CD8+ mitotic TRM	L:T:CD8:TRM		Tissue-resident memory
+Ref6.CD8..TEM	Ref6:CD8+ TEM	Ref6:CD8+ TEM	L:T:CD8:EM		"effector memory CD8-positive, alpha-beta T cell"
+Ref6.CD8..TRM	Ref6:CD8+ TRM	Ref6:CD8+ TRM	L:T:CD8:TRM		Tissue-resident memory
+Ref6.CD8..????	Ref6:CD8+ ????	Ref6:CD8+ ????	L:unconvT		gamma-delta T cell
+Ref7.CD4.C1.CCR7	Ref7:CD4-C1-CCR7	Ref7:CD4-C1-CCR7	L:T:CD4:Na??ve		"naive thymus-derived CD4-positive, alpha-beta T cell"
+Ref7.CD4.C2.ANXA1	Ref7:CD4-C2-ANXA1	Ref7:CD4-C2-ANXA1	L:T:CD4:CM		"central memory CD4-positive, alpha-beta T cell"
+Ref7.CD4.C3.GNLY	Ref7:CD4-C3-GNLY	Ref7:CD4-C3-GNLY	L:T:CD4:EM		"effector memory CD4-positive, alpha-beta T cell"
+Ref7.CD4.C4.CD69	Ref7:CD4-C4-CD69	Ref7:CD4-C4-CD69	L:T:CD4:TRM		Tissue-resident memory
+Ref7.CD4.C5.EOMES	Ref7:CD4-C5-EOMES	Ref7:CD4-C5-EOMES	L:T:CD4:TRM		Tissue-resident memory
+Ref7.CD4.C6.GZMA	Ref7:CD4-C6-GZMA	Ref7:CD4-C6-GZMA	L:T:CD4:TRM		Tissue-resident memory
+Ref7.CD4.C7.CXCL13	Ref7:CD4-C7-CXCL13	Ref7:CD4-C7-CXCL13	L:T:CD4:Ex		exhausted T cell
+Ref7.CD4.C8.FOXP3	Ref7:CD4-C8-FOXP3	Ref7:CD4-C8-FOXP3	L:T:CD4:Treg		"CD4-positive, CD25-positive, CCR4-positive, alpha-beta regulatory T cell"
+Ref7.CD4.C9.CTLA4	Ref7:CD4-C9-CTLA4	Ref7:CD4-C9-CTLA4	L:T:CD4:Treg		"CD4-positive, CD25-positive, CCR4-positive, alpha-beta regulatory T cell"
+Ref7.CD8.C1.LEF1	Ref7:CD8-C1-LEF1	Ref7:CD8-C1-LEF1	L:T:CD8:Na??ve		"naive thymus-derived CD8-positive, alpha-beta T cell"
+Ref7.CD8.C2.CD28	Ref7:CD8-C2-CD28	Ref7:CD8-C2-CD28	L:T:CD8:EM		"effector memory CD8-positive, alpha-beta T cell"
+Ref7.CD8.C3.CX3CR1	Ref7:CD8-C3-CX3CR1	Ref7:CD8-C3-CX3CR1	L:T:CD8:EM		"effector memory CD8-positive, alpha-beta T cell"
+Ref7.CD8.C4.GZMK	Ref7:CD8-C4-GZMK	Ref7:CD8-C4-GZMK	L:T:CD8:Ex		exhausted T cell
+Ref7.CD8.C5.ZNF683	Ref7:CD8-C5-ZNF683	Ref7:CD8-C5-ZNF683	L:T:CD8:TRM		Tissue-resident memory
+Ref7.CD8.C6.LAYN	Ref7:CD8-C6-LAYN	Ref7:CD8-C6-LAYN	L:T:CD8:Ex		exhausted T cell
+Ref7.CD8.C7.SLC4A10	Ref7:CD8-C7-SLC4A10	Ref7:CD8-C7-SLC4A10	L:T:CD8:Mait		mucosal invariant T cell
+Ref7.CD4.iNKT	Ref7:CD4-iNKT	Ref7:CD4-iNKT	X		iNKT
+Ref7.CD4.MAIT	Ref7:CD4-MAIT	Ref7:CD4-MAIT	X		CD4Mait
+Ref7.DN.diverse	Ref7:DN.diverse	Ref7:DN.diverse	X		DN-T
+Ref7.DN.MAIT	Ref7:DN.MAIT	Ref7:DN.MAIT	X		DN-Mait
+Ref7.DP.diverse	Ref7:DP.diverse	Ref7:DP.diverse	X		DP-T
+Ref7.other.diverse	Ref7:other.diverse	Ref7:other.diverse	X		other
+Ref7.other.MAIT	Ref7:other.MAIT	Ref7:other.MAIT	X		otherMait
