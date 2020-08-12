@@ -263,7 +263,8 @@ meta2[CD45RA_Ab<=(cd45ra_gate_cd8t) &  CD62L_Ab<=(cd62_gate_cd8t)& grepl("CD8", 
 
 meta2[, ImmC:=gsub("L:T:", "", ImmC)]
 meta2[, ImmC:=gsub(":CM", "+TCM", ImmC)]
-meta2[, ImmC:=gsub(":EM", "+TEM", ImmC)]
+meta2[, ImmC:=gsub(":EM$", "+TEM", ImmC)]
+meta2[, ImmC:=gsub(":EMRA", "+TEMRA", ImmC)]
 meta2[, ImmC:=gsub(":Na.*$", "+Tnaive", ImmC)]
 
 
@@ -345,6 +346,7 @@ ggplot(meta2, aes(CD62L_Ab, CD45RA_Ab)) +
 meta2[ImmC=='CD4+TCM', list(ImmC, CD62L_Ab>cd62_gate_cd4t & CD45RA_Ab<=cd45ra_gate_cd4t)][, .N, by = V2][, list(V2,N/sum(N))]
 meta2[ImmC=='CD4+TEM', list(ImmC, CD62L_Ab<=cd62_gate_cd4t & CD45RA_Ab<=cd45ra_gate_cd4t)][, .N, by = V2][, list(V2,N/sum(N))]
 meta2[ImmC=='CD4+Tnaive', list(ImmC, CD62L_Ab>cd62_gate_cd4t & CD45RA_Ab>cd45ra_gate_cd4t)][, .N, by = V2][, list(V2,N/sum(N))]
+meta2[ImmC=='CD4+TEMRA', list(ImmC, CD62L_Ab<=cd62_gate_cd4t & CD45RA_Ab>cd45ra_gate_cd4t)][, .N, by = V2][, list(V2,N/sum(N))]
 
 
 
@@ -353,6 +355,7 @@ meta2[ImmC=='CD4+Tnaive', list(ImmC, CD62L_Ab>cd62_gate_cd4t & CD45RA_Ab>cd45ra_
 meta2[ImmC=='CD8+TCM', list(ImmC, CD62L_Ab>cd62_gate_cd8t & CD45RA_Ab<=cd45ra_gate_cd8t)][, .N, by = V2][, list(V2,N/sum(N))]
 meta2[ImmC=='CD8+TEM', list(ImmC, CD62L_Ab<=cd62_gate_cd8t & CD45RA_Ab<=cd45ra_gate_cd8t)][, .N, by = V2][, list(V2,N/sum(N))]
 meta2[ImmC=='CD8+Tnaive', list(ImmC, CD62L_Ab>cd62_gate_cd8t & CD45RA_Ab>cd45ra_gate_cd8t)][, .N, by = V2][, list(V2,N/sum(N))]
+meta2[ImmC=='CD8+TEMRA', list(ImmC, CD62L_Ab<=cd62_gate_cd8t & CD45RA_Ab>cd45ra_gate_cd8t)][, .N, by = V2][, list(V2,N/sum(N))]
 
 
 

@@ -119,19 +119,16 @@ cover_set <- function(leaves){
 
 # create child-parent-link
 
-convert_to_bits <- function(nodes, ref.nodes){
+convert_to_bits <- function(node, ref.nodes){
   
   target.bits <- rep(0, length(ref.nodes))
   names(target.bits) <- ref.nodes
   
-  
-  for (node in strsplit(nodes, ";")[[1]]){
+  elements <- strsplit(node, ":")[[1]]
     
-    elements <- strsplit(node, ":")[[1]]
-    
-    i <- 1
-    current <- ""
-    while(i <= length(elements)){
+  i <- 1
+  current <- ""
+  while(i <= length(elements)){
       
       if(i == 1){
         current <- paste0(current, elements[i])
@@ -140,10 +137,12 @@ convert_to_bits <- function(nodes, ref.nodes){
       }
       target.bits[current] <- 1
       i <- i+1
-    }
+    
     
   }
   
   #print (paste0("return ",paste(target.bits, collapse = ",")))
   return(paste(target.bits, collapse = ","))
 }
+
+
