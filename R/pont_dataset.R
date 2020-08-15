@@ -47,7 +47,7 @@ save(singler,file=paste0(prefix,'.RData'))
 # 5559 T cells
 singler_annot <- fread('datasets/pont/comparison/pont_singler_annot.txt')
 colnames(singler_annot)[1] <- 'SingleR'
-immc_annot <- fread('datasets/pont/comparison/pont.output.txt')
+immc_annot <- fread('output/pont.output.txt')
 colnames(immc_annot)[2] <- 'ImmC'
 
 

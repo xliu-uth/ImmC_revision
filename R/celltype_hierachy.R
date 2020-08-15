@@ -19,6 +19,7 @@ setkey(cluster_size, Hierarchy)
 dnn_train_input_balanced <- dnn_train_input[Hierarchy!='X',.SD[sample(.N, cluster_size[Hierarchy, size], replace =T)],by = Hierarchy]
 
 ref_nodes <-  unique(cover_set(cell_hierarchy$Hierarchy_version08112020))
+ref_nodes <- ref_nodes[ref_nodes!='X']
 
 dnn_train_input_balanced[, Evopath:=sapply(dnn_train_input_balanced$Hierarchy, function(x) convert_to_bits(x, ref_nodes[ref_nodes!='X']))]
 fwrite(data.table(dnn_train_input_balanced[, -1], Hierarchy=dnn_train_input_balanced$Hierarchy), 'tensorflow/input/deeplearn.train.balance.input08112020.txt')

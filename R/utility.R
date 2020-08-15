@@ -1,7 +1,7 @@
 library(dplyr)
 library(ggplot2)
 plot_heatmap <- function(data, title="",  ncol = 2, ord1 = NULL, ord2=NULL,
-                         size = 10,size2=2, palette = 'Purples',
+                         size = 10,size2=2, palette = 'RdPu',
                          minpct = 0, minshow=25, measures = c('f1', 'Precision', 'Recall'),
                          legend.pos='none') {
   
@@ -45,7 +45,7 @@ plot_heatmap <- function(data, title="",  ncol = 2, ord1 = NULL, ord2=NULL,
   colfunc <- colorRampPalette(brewer.pal(9, palette))
   #zcut <- c(-1, 25, 50, 75, 100)
   zcut <- c(-1, 19, 40, 60, 80, 100)
-  #zcut <- c(-1, seq(10, 100, 10))
+  #zcut <- c(-1, 14, 30, 45, 60)
   
   data2 <- data %>% filter(measure %in% measures)
   data2[is.na(data2$value), 'value'] <- 0
@@ -119,16 +119,19 @@ cover_set <- function(leaves){
 
 # create child-parent-link
 
-convert_to_bits <- function(node, ref.nodes){
+convert_to_bits <- function(nodes, ref.nodes){
   
   target.bits <- rep(0, length(ref.nodes))
   names(target.bits) <- ref.nodes
   
-  elements <- strsplit(node, ":")[[1]]
+  
+  for (node in strsplit(nodes, ";")[[1]]){
     
-  i <- 1
-  current <- ""
-  while(i <= length(elements)){
+    elements <- strsplit(node, ":")[[1]]
+    
+    i <- 1
+    current <- ""
+    while(i <= length(elements)){
       
       if(i == 1){
         current <- paste0(current, elements[i])
@@ -137,12 +140,10 @@ convert_to_bits <- function(node, ref.nodes){
       }
       target.bits[current] <- 1
       i <- i+1
-    
+    }
     
   }
   
   #print (paste0("return ",paste(target.bits, collapse = ",")))
   return(paste(target.bits, collapse = ","))
 }
-
-

@@ -28,23 +28,23 @@ construct_tree <- function(){
   names(tree[[1]]) <- 'Immune_Cell'
   
   tree[[2]] <- list(c('CD34:HSC'),
-                    c('L:B', 'L:T', 'L:NK', 'L:unconvT'),
-                    c('M:pDC',  'M:cDC', 'M:Eos', 'M:Ery', 'M:Mono', 'M:Mast', 'M:Mega', 'M:Neu'))
+                    c('L:B', 'L:PC', 'L:T', 'L:NK', 'L:unconvT', 'L:cDC'),
+                    c('M:pDC',  'M:cDC', 'M:Eos', 'M:Ery', 'M:Mono', 
+                      'M:Mac', 'M:mDC', 'M:Mast', 'M:Mega', 'M:Platelet',
+                      'M:Neu'))
   
   names(tree[[2]]) <- c('CD34', 'L', 'M')
   
-  tree[[3]] <- list(c('L:B:PC'),
+  tree[[3]] <- list(
                     c('L:T:CD4', 'L:T:CD8'),
-                    c('M:Mega:Platelet'),
-                    c('M:Mono:Mac', 'M:Mono:mDC'),
                     c('L:unconvT:MAIT', 'L:unconvT:gdT')
   )
-  names(tree[[3]]) <- c('L:B', 'L:T', 'M:Mega', 'M:Mono', 'L:unconvT')
+  names(tree[[3]]) <- c('L:T',  'L:unconvT')
   
   
   
   tree[[4]] <- list(c('L:T:CD4:CM', 'L:T:CD4:EM', 'L:T:CD4:Ex', 'L:T:CD4:Naive', 'L:T:CD4:Tfh', 'L:T:CD4:Treg', 'L:T:CD4:TRM'),
-                    c('L:T:CD8:CM', 'L:T:CD8:EM', 'L:T:CD8:Ex', 'L:T:CD8:Naive', 'L:T:CD8:TRM')
+                    c('L:T:CD8:CM', 'L:T:CD8:EM', 'L:T:CD8:Ex', 'L:T:CD8:Naive', 'L:T:CD8:TRM', 'L:T:CD8:EMRA')
   )
   names(tree[[4]]) <- c('L:T:CD4','L:T:CD8')
   
@@ -54,6 +54,7 @@ construct_tree <- function(){
 
 get_entropy <- function(p){
   if(p <= 0 | p == 1){return (0)}
+  #return(-p*log(p)-(1-p)*log(1-p))
   return(-p*log(p)-(1-p)*log(1-p))
 }
 
@@ -93,31 +94,49 @@ assign_cell_label <- function(vstats){
   
   
   tree <- construct_tree()
-  probs <- vstats[1:37]
+  probs <- vstats[1:38]
   names(probs) <- gsub(".prob", "", names(probs))
   ent <- sapply(probs, function(x) get_entropy(x))
-  
+  ent_baseline <- get_entropy(mean(probs))
   entgain <- ent
+
+
+  depth <- sapply(names(probs), function(x) length(strsplit(x, ":")[[1]]))
+  drop_rate <- sapply(probs, function(x) (x-min(probs)))
+  drop_rate <- drop_rate * log(depth)
+  
+  winner <- rep(F, length(probs))
+  names(winner) <- names(probs)
+  
   
   i <- length(tree)
   while(i >1){
     for (s in names(tree[[i]])){
-      if(length(tree[[i]][[s]])>1){
-        for (t in tree[[i]][[s]]){
-          entgain[s] <- entgain[s] - ent[t]#/length(tree[[i]][[s]])
-        
+      
+      if(length(tree[[i]][[s]])>0){
+        drop_rate[s] <- (probs[s]-max(probs[tree[[i]][[s]]])) * log(1+length(tree)-i)
+        for (t in tree[[i]][[s]]){     
+          entgain[s] <- entgain[s] - ent[t]
         }
+        peer_probs <- probs[tree[[i]][[s]]]
+        winner[names(peer_probs[peer_probs==max(peer_probs)])] <- T
+
+      }else{
+        entgain[s] <- entgain[s] - ent_baseline
+        
       }
-      
-      
+      #print(paste(s, probs[s], max(probs[tree[[i]][[s]]]),i, drop_rate[s]))
     }
     i <- i-1
   }
+  peer_probs <- probs[unlist(tree[[1]])]
+  winner[names(peer_probs[peer_probs==max(peer_probs)])] <- T
+  #data.table(celltype=names(probs), p=probs, dr=drop_rate[names(probs)], eg=entgain[names(probs)])[order(celltype),]
   
-
+  
+  candidates <- entgain[winner==T]
+  candidates <- names(candidates[candidates==max(candidates)])
   # deal with ties, choose the lowest std/mean
-  candidates <- names(entgain[entgain==max(entgain)])
-  
   return_cand <- candidates[order(vstats[paste0(candidates, ".std")]/vstats[paste0(candidates, ".prob")])[1]]
   
   return (return_cand)
@@ -144,21 +163,20 @@ assign_dataset <- function(output.prefix){
   # 2. write the returned dataframe to disk
   
   ref.nodes <- c("CD34","CD34:HSC","L","L:NK","L:B",            
-                "M","M:Mega","M:Mega:Platelet", "M:Ery","M:Eos","M:Neu",          
-                "M:Mono","M:pDC","L:B:PC","M:Mono:mDC","L:T","L:T:CD4",        
+                "M","M:Platelet", "M:Ery","M:Eos","M:Neu",          
+                "M:Mono","M:pDC","L:PC","M:mDC","L:T","L:T:CD4",        
                 "L:T:CD4:EM","L:T:CD4:Naive","L:T:CD8","L:T:CD8:Ex","L:T:CD8:EM","L:T:CD8:CM",     
-                "L:T:CD4:Tfh","L:T:CD8:EMRA","L:T:CD4:CM","L:T:CD4:Treg","L:T:CD8:Naive",   "M:Mono:Mac",     
-                "L:unconvT","L:unconvT:gdT","L:T:CD8:TRM","M:cDC","M:Mast","L:T:CD4:TRM",    
+                "L:T:CD4:Tfh","L:T:CD8:EMRA","L:T:CD4:CM","L:T:CD4:Treg","L:T:CD8:Naive",   "M:Mac",     
+                "L:unconvT","L:unconvT:gdT","L:T:CD8:TRM", "M:Mega", "M:cDC", "L:cDC", "M:Mast","L:T:CD4:TRM",    
                 "L:T:CD4:Ex","L:unconvT:MAIT" )
   
   norm.method <- "ontotree"
   fpath <- paste0('tensorflow/output/', output.prefix,  '.deeplearning.', norm.method, '.stats.txt', sep = "")
   print (paste0('Read ', fpath))
-  dnn.stats <- read.table(fpath, header = F, sep = " ",stringsAsFactors=F)
+  dnn.stats <- fread(fpath, header = F)
   # 37 cell types
   cnames <- c("Cell",paste0(ref.nodes, ".prob"), paste0(ref.nodes, ".std"))
   colnames(dnn.stats) <- cnames
-  rownames(dnn.stats) <- dnn.stats$Cell
   print (paste0('Assign the final labels'))
   assign.labels <- dnn.stats[, -1] %>%
     apply(1, function(x) assign_cell_label(x))
@@ -168,8 +186,8 @@ assign_dataset <- function(output.prefix){
                          ImmClassifier_prediction= assign.labels),
               paste0("output/", output.prefix, ".output.txt"),
               quote = F, sep = "\t", row.names = F)
-  return (data.frame(Cell=dnn.stats$Cell, ImmClassifier_prediction=assign.labels, stringsAsFactors = F))
-  
+  #return (data.frame(Cell=dnn.stats$Cell, ImmClassifier_prediction=assign.labels, stringsAsFactors = F))
+  return (0)
   
   
 }
