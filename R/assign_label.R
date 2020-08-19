@@ -168,13 +168,13 @@ assign_dataset <- function(output.prefix){
                 "L:T:CD4:EM","L:T:CD4:Naive","L:T:CD8","L:T:CD8:Ex","L:T:CD8:EM","L:T:CD8:CM",     
                 "L:T:CD4:Tfh","L:T:CD8:EMRA","L:T:CD4:CM","L:T:CD4:Treg","L:T:CD8:Naive",   "M:Mac",     
                 "L:unconvT","L:unconvT:gdT","L:T:CD8:TRM", "M:Mega", "M:cDC", "L:cDC", "M:Mast","L:T:CD4:TRM",    
-                "L:T:CD4:Ex","L:unconvT:MAIT" )
+                "L:T:CD4:Ex","L:unconvT:MAIT")
   
   norm.method <- "ontotree"
   fpath <- paste0('tensorflow/output/', output.prefix,  '.deeplearning.', norm.method, '.stats.txt', sep = "")
   print (paste0('Read ', fpath))
   dnn.stats <- fread(fpath, header = F)
-  # 37 cell types
+  # 38 cell types
   cnames <- c("Cell",paste0(ref.nodes, ".prob"), paste0(ref.nodes, ".std"))
   colnames(dnn.stats) <- cnames
   print (paste0('Assign the final labels'))
