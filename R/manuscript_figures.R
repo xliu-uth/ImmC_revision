@@ -1589,25 +1589,26 @@ meta5[, list(CD8_Ab>cd8_gate&CD4_Ab<cd4_gate, grepl("CD8\\+", SingleR))][, .N, b
 # Figure 6d Recall & Prec heatmap
 source('utility.R')
 
-#meta2 <- copy(meta[truth == 'CD4+T' |  truth == 'CD8+T', ])
-meta2 <- copy(meta[truth == 'T:CD4+CD8-' |  truth == 'T:CD4-CD8+', ])
-meta2[, truth:=ifelse(grepl("CD4\\+", truth), "CD4+T", truth)]
-meta2[, truth:=ifelse(grepl("CD8\\+", truth), "CD8+T", truth)]
+
+#meta2 <- copy(meta[truth == 'T:CD4+CD8-' |  truth == 'T:CD4-CD8+', ])
+meta2 <- copy(meta)
+meta2[, truth:=ifelse(grepl("CD4\\+CD8-", truth), "CD4+T", truth)]
+meta2[, truth:=ifelse(grepl("CD4-CD8\\+", truth), "CD8+T", truth)]
 meta2[, .N, by = truth]
 # add t phenotype 
 
 
-meta2[CD45RA_Ab>(cd45ra_gate_cd4t) &  CD62L_Ab>(cd62_gate_cd4t) & grepl("CD4", truth), truth:=paste0(truth, "naive")]
-meta2[CD45RA_Ab>(cd45ra_gate_cd4t) &  CD62L_Ab<=(cd62_gate_cd4t) & grepl("CD4", truth), truth:=paste0(truth, "EMRA")]
-meta2[CD45RA_Ab<=(cd45ra_gate_cd4t) &  CD62L_Ab>(cd62_gate_cd4t) & grepl("CD4", truth), truth:=paste0(truth, "CM")]
-meta2[CD45RA_Ab<=(cd45ra_gate_cd4t) &  CD62L_Ab<=(cd62_gate_cd4t)& grepl("CD4", truth), truth:=paste0(truth, "EM")]
+meta2[CD45RA_Ab>(cd45ra_gate_cd4t) &  CD62L_Ab>(cd62_gate_cd4t) & grepl("CD4\\+T", truth), truth:=paste0(truth, "naive")]
+meta2[CD45RA_Ab>(cd45ra_gate_cd4t) &  CD62L_Ab<=(cd62_gate_cd4t) & grepl("CD4\\+T", truth), truth:=paste0(truth, "EMRA")]
+meta2[CD45RA_Ab<=(cd45ra_gate_cd4t) &  CD62L_Ab>(cd62_gate_cd4t) & grepl("CD4\\+T", truth), truth:=paste0(truth, "CM")]
+meta2[CD45RA_Ab<=(cd45ra_gate_cd4t) &  CD62L_Ab<=(cd62_gate_cd4t)& grepl("CD4\\+T", truth), truth:=paste0(truth, "EM")]
 
 
 
-meta2[CD45RA_Ab>(cd45ra_gate_cd8t) &  CD62L_Ab>(cd62_gate_cd8t) & grepl("CD8", truth), truth:=paste0(truth, "naive")]
-meta2[CD45RA_Ab>(cd45ra_gate_cd8t) &  CD62L_Ab<=(cd62_gate_cd8t) & grepl("CD8", truth), truth:=paste0(truth, "EMRA")]
-meta2[CD45RA_Ab<=(cd45ra_gate_cd8t) &  CD62L_Ab>(cd62_gate_cd8t) & grepl("CD8", truth), truth:=paste0(truth, "CM")]
-meta2[CD45RA_Ab<=(cd45ra_gate_cd8t) &  CD62L_Ab<=(cd62_gate_cd8t)& grepl("CD8", truth), truth:=paste0(truth, "EM")]
+meta2[CD45RA_Ab>(cd45ra_gate_cd8t) &  CD62L_Ab>(cd62_gate_cd8t) & grepl("CD8\\+T", truth), truth:=paste0(truth, "naive")]
+meta2[CD45RA_Ab>(cd45ra_gate_cd8t) &  CD62L_Ab<=(cd62_gate_cd8t) & grepl("CD8\\+T", truth), truth:=paste0(truth, "EMRA")]
+meta2[CD45RA_Ab<=(cd45ra_gate_cd8t) &  CD62L_Ab>(cd62_gate_cd8t) & grepl("CD8\\+T", truth), truth:=paste0(truth, "CM")]
+meta2[CD45RA_Ab<=(cd45ra_gate_cd8t) &  CD62L_Ab<=(cd62_gate_cd8t)& grepl("CD8\\+T", truth), truth:=paste0(truth, "EM")]
 
 
 
@@ -1619,9 +1620,9 @@ meta2[, ImmC:=gsub(":EM$", "+TEM", ImmC)]
 meta2[, ImmC:=gsub(":EMRA", "+TEMRA", ImmC)]
 meta2[, ImmC:=gsub(":Na.*$", "+Tnaive", ImmC)]
 
-
+meta2[, SingleR:=gsub("_[Cc]entral_memory", "TCM", SingleR)]
 meta2[, SingleR:=gsub("T_cell:", "", SingleR)]
-meta2[, SingleR:=gsub("_central_memory", "TCM", SingleR)]
+
 meta2[, SingleR:=gsub("_naive", "Tnaive", SingleR)]
 meta2[, SingleR:=gsub("_Naive", "Tnaive", SingleR)]
 meta2[, SingleR:=gsub("_effector_memory$", "TEM", SingleR)]
@@ -1633,51 +1634,108 @@ meta2[, SingleR:=ifelse(grepl("NK", SingleR), "NK", SingleR)]
 p1 <- plot_heatmap(table(meta2[, c('Known', 'annot'):=list(truth, ImmC)][, c('Known', 'annot')]),
                    ord1=meta2[, .N, by  = truth][, truth],
                    ord2=meta2[, .N, by  = truth][, truth],# measures = 'f1',
-                   minshow = 0, size2 =6, minpct = 0)
+                   minshow = 0, size2 =6, minpct = 0,
+                   measures = c('Recall', 'Precision'))
 
 
 p2 <- plot_heatmap(table(meta2[, c('Known', 'annot'):=list(truth, SingleR)][, c('Known', 'annot')]),
                    ord1=meta2[, .N, by  = truth][, truth],
                    ord2=meta2[, .N, by  = truth][, truth], #measures = 'f1',
-                   minshow = 0, size2 =6, minpct = 0)
+                   minshow = 0, size2 =6, minpct = 0,
+                   measures = c('Recall', 'Precision'))
 
 grid.arrange(p1, p2, ncol = 2)
 
 
-immc_f1 <- c(64, 20, 16, 63, 31, 69, 12, 0)
-singler_f1 <- c(73, 0, 39, 77, 1, 0, 0, 0)
-
-immc_recall <- c(63, 12, 10, 85, 85, 79, 10, 0)
-immc_prec <- c(64, 67, 52, 50, 19, 61, 14, 0)
+meta3 <- copy(meta)
 
 
-singler_recall <- c(79, 0, 31, 90, 1, 0, 0, 0)
-singler_prec <- c(67, 0, 50, 66, 8, 0,0,0)
+meta3[CD45RA_Ab>(cd45ra_gate_cd4t) &  CD62L_Ab>(cd62_gate_cd4t) & grepl("T", truth), truth:="naive"]
+meta3[CD45RA_Ab>(cd45ra_gate_cd4t) &  CD62L_Ab<=(cd62_gate_cd4t) & grepl("T", truth), truth:"EMRA"]
+meta3[CD45RA_Ab<=(cd45ra_gate_cd4t) &  CD62L_Ab>(cd62_gate_cd4t)& grepl("T", truth), truth:="CM"]
+meta3[CD45RA_Ab<=(cd45ra_gate_cd4t) &  CD62L_Ab<=(cd62_gate_cd4t)& grepl("T", truth), truth:="EM"]
 
 
-ggplot(melt( data.table(celltype = meta2[, .N, by  = truth][, truth],
+
+meta3[CD45RA_Ab>(cd45ra_gate_cd8t) &  CD62L_Ab>(cd62_gate_cd8t) & grepl("T", truth), truth:=paste0(truth, "naive")]
+meta3[CD45RA_Ab>(cd45ra_gate_cd8t) &  CD62L_Ab<=(cd62_gate_cd8t) & grepl("T", truth), truth:=paste0(truth, "EMRA")]
+meta3[CD45RA_Ab<=(cd45ra_gate_cd8t) &  CD62L_Ab>(cd62_gate_cd8t)& grepl("T", truth), truth:=paste0(truth, "CM")]
+meta3[CD45RA_Ab<=(cd45ra_gate_cd8t) &  CD62L_Ab<=(cd62_gate_cd8t)& grepl("T", truth), truth:=paste0(truth, "EM")]
+
+
+meta3[, .N, by = truth]
+
+
+
+# merge CD4 and CD8
+p1 <- plot_heatmap(table(meta3[, c('Known', 'annot'):=list(truth, ImmC)][, c('Known', 'annot')]),
+                   ord1=meta3[, .N, by  = truth][, truth],
+                   ord2=meta3[, .N, by  = truth][, truth],# measures = 'f1',
+                   minshow = 0, size2 =6, minpct = 0,
+                   measures = c('Recall', 'Precision'))
+
+
+p2 <- plot_heatmap(table(meta3[, c('Known', 'annot'):=list(truth, SingleR)][, c('Known', 'annot')]),
+                   ord1=meta3[, .N, by  = truth][, truth],
+                   ord2=meta3[, .N, by  = truth][, truth], #measures = 'f1',
+                   minshow = 0, size2 =6, minpct = 0,
+                   measures = c('Recall', 'Precision'))
+
+grid.arrange(p1, p2, ncol = 2)
+
+
+t_celltypes <- c('CD4+Tnaive', 'CD4+TCM','CD4+TEM', 'CD4+TEMRA',
+                 'CD8+Tnaive', 'CD8+TCM','CD8+TEM', 'CD8+TEMRA'
+                 )
+
+t_celltypes2 <- c('naive', 'CM','EM', 'EMRA')
+
+immc_recall <- c(85,63,10,0,79,10,12,85)
+immc_prec <- c(48,62,48,0,57,12,41,15)
+
+immc2_recall <- c(86,60,11,82)
+immc2_prec <- c(51,60,44,15)
+
+
+singler_recall <- c(90,79,31,0,0,0,0,1)
+singler_prec <- c(65,63,43,0,0,0,0,7)
+
+singler2_recall <- c(85,75,20,1)
+singler2_prec <- c(75,66,56,7)
+
+
+
+ggplot(melt( data.table(celltype = t_celltypes,
                         immc_rec=immc_recall, 
                         singler_rec=singler_recall,
                         immc_prec=immc_prec, 
                         singler_prec=singler_prec), id.vars = c('celltype')),
        aes(celltype, variable)) + geom_tile(aes(fill = value), color = 'black') +
-  scale_fill_gradient2(low = "red", mid = "white", high = "darkblue") +
+  scale_fill_gradient(low = "white", high = "darkgreen") +
   theme_classic() + 
   theme(axis.text.x= element_text(size = 16, color = 'black', angle=45, hjust =1 ),
         axis.text.y= element_text(size = 24, color = 'black') ) + coord_equal() 
 
-ggplot(melt( data.table(celltype = meta2[, .N, by  = truth][, truth],
-                        immc_f1=immc_f1,
-                        singler_f1=singler_f1), id.vars = c('celltype')),
+
+
+
+ggplot(melt( data.table(celltype = t_celltypes2,
+                        immc_rec=immc2_recall, 
+                        singler_recall=singler2_recall,
+                        immc_prec=immc2_prec, 
+                        singler_prec=singler2_prec), id.vars = c('celltype')),
        aes(celltype, variable)) + geom_tile(aes(fill = value), color = 'black') +
-  scale_fill_gradient2(low = "red", mid = "white", high = "darkblue") +
+  scale_fill_gradient2(low = "red", mid = "white", high = "springgreen4") +
   theme_classic() + 
   theme(axis.text.x= element_text(size = 16, color = 'black', angle=45, hjust =1 ),
         axis.text.y= element_text(size = 24, color = 'black') ) + coord_equal() 
+
+
+
 
 # Figure 6c CD62L vs. CD45RA ImmC breakdown
 
-ggplot(meta2, aes(CD62L_Ab, CD45RA_Ab)) + 
+ggplot(meta2[grepl("CD4\\+T|CD8\\+T", truth),], aes(CD62L_Ab, CD45RA_Ab)) + 
   geom_point(size = .1) +
   theme_classic() + 
   geom_density_2d(lwd=.1) +
@@ -1689,16 +1747,15 @@ ggplot(meta2, aes(CD62L_Ab, CD45RA_Ab)) +
 
 
 
-meta2[,is_facet:=ifelse(grepl("CD", ImmC), ImmC, 'other')]
+meta2[,is_facet:=ifelse(grepl("T", ImmC), ImmC, 'other')]
 
 ggplot(meta2, aes(CD62L_Ab, CD45RA_Ab)) + 
- # geom_point(aes(color = gsub("\\+.*$","", truth)), size = .1) +
-  geom_point(color = ifelse(grepl("CD4", meta2$truth), 'red', 'blue'), size = .1) +
+  geom_point(color = ifelse(grepl("CD4\\+T", meta2$truth), 'red', ifelse(grepl("CD8\\+T", meta2$truth), 'blue', ifelse(grepl("CD4\\+CD8\\+", meta2$truth), 'gold', ifelse(grepl("CD4-CD8-", meta2$truth), 'cyan', 'darkgrey')))), size = .1) +
   theme_classic() + facet_wrap(~factor(ImmC, levels = meta2[,.N, by = is_facet][order(-N), is_facet]), ncol = 4)+ 
-  geom_vline(xintercept = cd62_gate_cd4t,  linetype="dashed", color = "red", size = .1) + 
-  geom_hline(yintercept = cd45ra_gate_cd4t,  linetype="dashed", color = "red", size = .1) + xlim(0, 6) + ylim(0,7) +
-  geom_vline(xintercept = cd62_gate_cd8t,  linetype="dashed", color = "blue", size = .1 ) + 
-  geom_hline(yintercept = cd45ra_gate_cd8t,  linetype="dashed", color = "blue" , size = .1)
+  geom_vline(xintercept = cd62_gate_cd4t,  linetype="dashed", color = "red", size = .3) + 
+  geom_hline(yintercept = cd45ra_gate_cd4t,  linetype="dashed", color = "red", size = .3) +
+  geom_vline(xintercept = cd62_gate_cd8t,  linetype="dashed", color = "blue", size = .3) + 
+  geom_hline(yintercept = cd45ra_gate_cd8t,  linetype="dashed", color = "blue" , size = .3)
 
 
 meta2[ImmC=='CD4+TCM', list(ImmC, CD62L_Ab>cd62_gate_cd4t & CD45RA_Ab<=cd45ra_gate_cd4t)][, .N, by = V2][, list(V2,N/sum(N))]
@@ -1716,15 +1773,16 @@ meta2[ImmC=='CD8+Tnaive', list(ImmC, CD62L_Ab>cd62_gate_cd8t & CD45RA_Ab>cd45ra_
 meta2[ImmC=='CD8+TEMRA', list(ImmC, CD62L_Ab<=cd62_gate_cd8t & CD45RA_Ab>cd45ra_gate_cd8t)][, .N, by = V2][, list(V2,N/sum(N))]
 
 
-
+meta2[,is_facet:=ifelse(grepl("T|CD8", SingleR), SingleR, 'other')]
 ggplot(meta2, aes(CD62L_Ab, CD45RA_Ab)) + 
   #geom_point(aes(color = gsub("\\+.*$","", truth)), size = .1) +
-  geom_point(color = ifelse(grepl("CD4", meta2$truth), 'red', 'blue'), size = .1) +
-  theme_classic() + facet_wrap(~factor(SingleR, levels = meta2[,.N, by = SingleR][order(-N), SingleR]), ncol = 4)+ 
-  geom_vline(xintercept = cd62_gate_cd4t,  linetype="dashed", color = "red", size = .1) + 
-  geom_hline(yintercept = cd45ra_gate_cd4t,  linetype="dashed", color = "red", size = .1) + xlim(0, 6) + ylim(0,7) +
-  geom_vline(xintercept = cd62_gate_cd8t,  linetype="dashed", color = "blue", size = .1 ) + 
-  geom_hline(yintercept = cd45ra_gate_cd8t,  linetype="dashed", color = "blue" , size = .1)
+  #geom_point(color = ifelse(grepl("CD4", meta2$truth), 'red', 'blue'), size = .1) +
+  geom_point(color = ifelse(grepl("CD4\\+T", meta2$truth), 'red', ifelse(grepl("CD8\\+T", meta2$truth), 'blue', ifelse(grepl("CD4\\+CD8\\+", meta2$truth), 'gold', ifelse(grepl("CD4-CD8-", meta2$truth), 'cyan', 'darkgrey')))), size = .1) +
+  theme_classic() + facet_wrap(~factor(SingleR, levels = meta2[,.N, by = is_facet][order(-N), is_facet]), ncol = 4)+ 
+  geom_vline(xintercept = cd62_gate_cd4t,  linetype="dashed", color = "red", size = .3) + 
+  geom_hline(yintercept = cd45ra_gate_cd4t,  linetype="dashed", color = "red", size = .3) + 
+  geom_vline(xintercept = cd62_gate_cd8t,  linetype="dashed", color = "blue", size = .3 ) + 
+  geom_hline(yintercept = cd45ra_gate_cd8t,  linetype="dashed", color = "blue" , size = .3)
 
 
 meta2[SingleR=='CD4+TCM', list(SingleR, CD62L_Ab>cd62_gate_cd4t & CD45RA_Ab<=cd45ra_gate_cd4t)][, .N, by = V2][, list(V2,N/sum(N))]
