@@ -1421,7 +1421,7 @@ cd45ra_gate_cd4t <- 2.6
 
 
 cd62_gate_cd8t <- 3.2 
-cd45ra_gate_cd8t <- 3.75
+cd45ra_gate_cd8t <- 3.78
 
 
 
